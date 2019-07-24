@@ -15,7 +15,7 @@
 ## Versions to use
 
 * `kubevirtci/cli`: `sha256:1dd015dea4f12e6dcb8e31be3eeb677fed96f290ef4a4892a33c43d666053536`
-* `kubevirtci/gocli`: `sha256:868fd9f2b6e5ff6473ab92cdd7d3a762ec8a8c66dac29f5db841879d40038f2a`
+* `kubevirtci/gocli`: `sha256:a7880757e2d2755c6a784c1b64c64b096769ed3ccfac9d8e535df481731c2144`
 * `kubevirtci/base`: `sha256:1f9f2e12571cf96a89a3e24b15de0b2857db159b4c7d3657c81541845040c1bd`
 * `kubevirtci/centos:1905_01`: `sha256:728232c8b5b79bb69e1386a6b47acd72876faa386202b535e227bc605adffe33`
 * `kubevirtci/os-3.11.0-multus`: `sha256:adabdd119fe04d1808c57418369ea7ec84b94770f1686ca168f079c6618b23a4`
@@ -30,14 +30,12 @@
 # OKD clusters in the container with libvirt
 
 * `okd-base` contains all needed packages to provision and run OKD cluster on top of the libvirt provider
-* `okd-4.1.0` okd-4.1.0 cluster provisioned with OpenShift installer on top of the libvirt provider
-* `okd-4.1.2` okd-4.1.2 cluster provisioned with OpenShift installer on top of the libvirt provider, this image contains custom libvirt image that includes fixes to deploy new nodes without need to apply any W/A
+* `okd-4.1` okd-4.1 cluster provisioned with OpenShift installer on top of the libvirt provider, this image contains custom libvirt image that includes fixes to deploy new nodes without need to apply any W/A
 
 ## Versions to use
 
 * `kubevirtci/okd-base`: `sha256:259e776998da3a503a30fdf935b29102443b24ca4ea095c9478c37e994e242bb`
-* `kubevirtci/okd-4.1.0`: `sha256:d190cee4bb30e231ceb9a7c9eb1ade10c036225e126cd0abf60e9706ebd696fd`
-* `kubevirtci/okd-4.1.2`: `sha256:88fba5c00ba973c8da712d14689f1d93c40fa6a8e8efdb4da501b572adbd3d6b`
+* `kubevirtci/okd-4.1`: `sha256:d452e8f910bd08b4aabe2a9b8fd82dc5984a3e95f7096b3ebd6c8ba836a5361d`
 
 ## Using gocli
 
@@ -60,13 +58,13 @@ pullSecret: <pull secret>
 and after you should run `gocli` command:
 ```bash
 gocli provision okd \
---prefix okd-4.1.0 \
+--prefix okd-4.1 \
 --dir-scripts <scripts_folder>/scripts \
 --dir-hacks <hacks_folder>/hacks \
 --master-memory 10240 \
 --installer-pull-token-file <installer_pull_token_file> \
 --installer-repo-tag release-4.1 \
---installer-release-image quay.io/openshift-release-dev/ocp-release:4.1.0-rc.7 \
+--installer-release-image quay.io/openshift-release-dev/ocp-release:4.1 \
 kubevirtci/okd-base@sha256:259e776998da3a503a30fdf935b29102443b24ca4ea095c9478c37e994e242bb
 ```
 
@@ -82,7 +80,7 @@ NOTE: OpenShift cluster consumes a lot of resources, you should have at least 18
 
 You should run `gocli` command:
 ```bash
-gocli run okd --prefix okd-4.1.0 --ocp-console-port 443 --background kubevirtci/okd-4.1.0@sha256:d190cee4bb30e231ceb9a7c9eb1ade10c036225e126cd0abf60e9706ebd696fd
+gocli run okd --prefix okd-4.1 --ocp-console-port 443 --background kubevirtci/okd-4.1@sha256:d452e8f910bd08b4aabe2a9b8fd82dc5984a3e95f7096b3ebd6c8ba836a5361d
 ```
 
 ### How to connect to the OKD console
